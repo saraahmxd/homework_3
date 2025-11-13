@@ -19,38 +19,39 @@ h1 {
   margin-bottom: 25px;
 }
 
-/* Align form fields in a clean grid */
-.block label {
-  display: inline-block;
-  width: 180px;              /* label width */
-  font-weight: bold;
-  margin-top: 10px;
-  vertical-align: middle;
+/* Form field grid for perfect alignment */
+.block form {
+  display: grid;
+  grid-template-columns: 180px 300px 220px; /* label | input | warning */
+  align-items: center;
+  row-gap: 12px;
+  column-gap: 10px;
 }
 
+/* Label styling */
+.block label {
+  font-weight: bold;
+  text-align: right;
+}
+
+/* Inputs, selects, and textareas */
 .block input,
 .block select,
 .block textarea {
-  display: inline-block;
-  width: 300px;              /* input box width */
+  width: 100%;
   padding: 6px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  margin-top: 10px;
-  vertical-align: middle;
+  box-sizing: border-box;
 }
 
-/* For warning text (keeps alignment consistent) */
+/* Warning messages stay in the same column for alignment */
 .warning {
-  display: inline-block;
   color: red;
   font-size: 0.9em;
-  margin-left: 10px;
-  width: 220px;              /* fixed width to prevent layout jumping */
-  vertical-align: middle;
 }
 
-/* For fieldsets */
+/* Fieldsets */
 fieldset {
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -64,8 +65,7 @@ fieldset legend {
 
 /* Range slider and value alignment */
 #salary {
-  width: 300px;
-  margin-top: 10px;
+  width: 100%;
 }
 
 #salaryValue {
@@ -82,7 +82,6 @@ button {
   border-radius: 8px;
   cursor: pointer;
   font-size: 1em;
-  margin-right: 10px;
   margin-top: 20px;
 }
 
@@ -90,20 +89,18 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Responsive tweak */
+/* Responsive layout */
 @media (max-width: 700px) {
-  .block label, 
-  .block input, 
-  .block select, 
-  .block textarea, 
-  .warning {
-    display: block;
-    width: 100%;
+  .block form {
+    grid-template-columns: 1fr;
+  }
+
+  .block label {
+    text-align: left;
   }
 
   .warning {
-    margin-left: 0;
-    margin-bottom: 10px;
+    margin-top: -5px;
   }
 }
 
