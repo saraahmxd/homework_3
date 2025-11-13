@@ -1,133 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Homework 3 – New User Form</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-</head>
+/* General layout */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 40px;
+}
 
-<body>
-  <h1>New User Form</h1>
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
 
-  <form id="userForm" novalidate>
-    <div class="block">
-      <h2>Personal Information</h2>
+.block {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  padding: 20px 30px;
+  margin-bottom: 25px;
+}
 
-      <label for="firstName">First Name</label>
-      <input type="text" id="firstName" name="firstName" title="1–30 letters, apostrophes, or dashes only" />
-      <span class="warning" id="firstNameWarn"></span>
+/* Align form fields in a clean grid */
+.block label {
+  display: inline-block;
+  width: 180px;              /* label width */
+  font-weight: bold;
+  margin-top: 10px;
+  vertical-align: middle;
+}
 
-      <label for="middleInitial">Middle Initial</label>
-      <input type="text" id="middleInitial" name="middleInitial" title="Optional, 1 letter only" />
-      <span class="warning" id="middleInitialWarn"></span>
+.block input,
+.block select,
+.block textarea {
+  display: inline-block;
+  width: 300px;              /* input box width */
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  vertical-align: middle;
+}
 
-      <label for="lastName">Last Name</label>
-      <input type="text" id="lastName" name="lastName" title="1–30 letters, apostrophes, or dashes only" />
-      <span class="warning" id="lastNameWarn"></span>
+/* For warning text (keeps alignment consistent) */
+.warning {
+  display: inline-block;
+  color: red;
+  font-size: 0.9em;
+  margin-left: 10px;
+  width: 220px;              /* fixed width to prevent layout jumping */
+  vertical-align: middle;
+}
 
-      <label for="birthDate">Date of Birth</label>
-      <input type="date" id="birthDate" name="birthDate" title="Must be a valid date, not future or older than 120 years" />
-      <span class="warning" id="birthDateWarn"></span>
+/* For fieldsets */
+fieldset {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 15px;
+  padding: 10px 15px;
+}
 
-      <label for="idNumber">ID Number (9 digits)</label>
-      <input type="password" id="idNumber" name="idNumber" maxlength="11" title="9 digits, dashes auto-added" />
-      <span class="warning" id="idNumberWarn"></span>
-    </div>
+fieldset legend {
+  font-weight: bold;
+}
 
-    <div class="block">
-      <h2>Address Information</h2>
+/* Range slider and value alignment */
+#salary {
+  width: 300px;
+  margin-top: 10px;
+}
 
-      <label for="address1">Address Line 1</label>
-      <input type="text" id="address1" name="address1" title="2–30 characters required" />
-      <span class="warning" id="address1Warn"></span>
+#salaryValue {
+  font-weight: bold;
+  margin-left: 10px;
+}
 
-      <label for="address2">Address Line 2</label>
-      <input type="text" id="address2" name="address2" title="Optional, 2–30 characters" />
-      <span class="warning" id="address2Warn"></span>
+/* Buttons */
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-right: 10px;
+  margin-top: 20px;
+}
 
-      <label for="city">City</label>
-      <input type="text" id="city" name="city" title="2–30 letters only" />
-      <span class="warning" id="cityWarn"></span>
+button:hover {
+  background-color: #0056b3;
+}
 
-      <label for="state">State</label>
-      <select id="state" name="state">
-        <option value="">-- Select State --</option>
-        <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
-        <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
-        <option>DC</option><option>FL</option><option>GA</option><option>HI</option>
-        <option>ID</option><option>IL</option><option>IN</option><option>IA</option>
-        <option>KS</option><option>KY</option><option>LA</option><option>ME</option>
-        <option>MD</option><option>MA</option><option>MI</option><option>MN</option>
-        <option>MS</option><option>MO</option><option>MT</option><option>NE</option>
-        <option>NV</option><option>NH</option><option>NJ</option><option>NM</option>
-        <option>NY</option><option>NC</option><option>ND</option><option>OH</option>
-        <option>OK</option><option>OR</option><option>PA</option><option>PR</option>
-        <option>RI</option><option>SC</option><option>SD</option><option>TN</option>
-        <option>TX</option><option>UT</option><option>VT</option><option>VA</option>
-        <option>WA</option><option>WV</option><option>WI</option><option>WY</option>
-      </select>
-      <span class="warning" id="stateWarn"></span>
+/* Responsive tweak */
+@media (max-width: 700px) {
+  .block label, 
+  .block input, 
+  .block select, 
+  .block textarea, 
+  .warning {
+    display: block;
+    width: 100%;
+  }
 
-      <label for="zip">Zip Code</label>
-      <input type="text" id="zip" name="zip" maxlength="5" title="5 digits only" />
-      <span class="warning" id="zipWarn"></span>
-    </div>
+  .warning {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+}
 
-    <div class="block">
-      <h2>Contact</h2>
-
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" title="Format: name@domain.com" />
-      <span class="warning" id="emailWarn"></span>
-    </div>
-
-    <div class="block">
-      <h2>Preferences</h2>
-
-      <fieldset>
-        <legend>Check all that apply:</legend>
-        <label><input type="checkbox" name="disease" value="chickenpox"> Chicken Pox</label>
-        <label><input type="checkbox" name="disease" value="measles"> Measles</label>
-        <label><input type="checkbox" name="disease" value="covid"> Covid-19</label>
-        <label><input type="checkbox" name="disease" value="flu"> Flu</label>
-        <label><input type="checkbox" name="disease" value="other"> Other</label>
-      </fieldset>
-
-      <fieldset>
-        <legend>Do you own or rent?</legend>
-        <label><input type="radio" name="housing" value="own"> Own</label>
-        <label><input type="radio" name="housing" value="rent"> Rent</label>
-        <label><input type="radio" name="housing" value="unsure"> Unsure</label>
-      </fieldset>
-
-      <label for="salary">Desired Salary</label>
-      <input type="range" id="salary" min="20000" max="200000" step="1000" value="60000">
-      <span id="salaryValue">$60,000</span>
-
-      <label for="comments">Comments</label>
-      <textarea id="comments" name="comments" rows="3" cols="40"></textarea>
-    </div>
-
-    <div class="block">
-      <h2>Account Setup</h2>
-
-      <label for="userID">Desired User ID</label>
-      <input type="text" id="userID" name="userID" title="5–20 chars, start with letter, letters/numbers/_/- only" />
-      <span class="warning" id="userIDWarn"></span>
-
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" title="8–30 chars, include upper, lower, number" />
-      <span class="warning" id="passwordWarn"></span>
-
-      <label for="confirmPassword">Re-enter Password</label>
-      <input type="password" id="confirmPassword" name="confirmPassword" />
-      <span class="warning" id="confirmPasswordWarn"></span>
-    </div>
-
-    <button type="button" id="validateBtn">Validate</button>
-    <button type="submit" id="submitBtn" disabled>Submit</button>
-  </form>
-</body>
-</html>
